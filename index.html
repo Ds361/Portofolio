@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio — Destia </title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ===================== KONFIGURASI WARNA =====================
+       Ganti warna di sini untuk mengubah tema keseluruhan website
+    ============================================================== */
+    :root {
+      --accent: #c77f7f;        /* Warna aksen utama */
+      --accent-light: #502C29;  /* Warna aksen muda (background) */
+      --bg: #191919;            /* Warna background halaman */
+      --surface: #30302E;       /* Warna kartu/section */
+      --text: #EEEFED;          /* Warna teks utama */
+      --text-muted: #6B6965;    /* Warna teks sekunder */
+      --border: #B64441;        /* Warna garis border */
+      --check: rgb(0, 255, 242);
+      --radius: 12px;
+    }
+ 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+ 
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+ 
+    /* ===================== NAVBAR ===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #202020;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--text-muted);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+ 
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+ 
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+ 
+    .nav-links a {
+      color: var(--border);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+ 
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+ 
+    /* ===================== HERO ===================== */
+    #hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+ 
+    .hero-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--border);
+      background: var(--accent-light);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+ 
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+ 
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+ 
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+ 
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+ 
+    .btn-primary {
+      background: var(--border);
+      color: #f1eaea;
+    }
+ 
+    .btn-primary:hover { 
+      background: #ddd8d8;
+      color: var(--border);
+     }
+ 
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+ 
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+ 
+    /* ===================== FOTO PROFIL ===================== */
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--border);
+    }
+ 
+    .hero-photo-placeholder {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 4px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--accent);
+    }
+ 
+    /* ===================== SECTION UMUM ===================== */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+ 
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+ 
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+ 
+    /* ===================== ABOUT ===================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+ 
+    .about-text p { color: var(--text-muted); margin-bottom: 1rem; }
+ 
+    .about-skills h4 {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+ 
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+ 
+    .skill-tag {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+ 
+    /* ===================== PROYEK ===================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+ 
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--accent-light);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+ 
+    .project-card:hover {
+      background: var(--accent-light);
+      border-color: var(--border);
+      transform: translateY(-3px);
+    }
+ 
+    .project-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card h5 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #85827c;
+    }
+ 
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+ 
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      background: var(--accent-light);
+      color: var(--border);
+      border-radius: 100px;
+    }
+
+    .project-tag:hover {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      background: var(--border);
+      color: var(--accent);
+      border-radius: 100px;
+    }
+ 
+    .project-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+ 
+    /* ===================== PENGALAMAN ===================== */
+    .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+ 
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+ 
+    .timeline-item:last-child { border-bottom: none; }
+ 
+    .timeline-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-top: 4px;
+    }
+ 
+    .timeline-content h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; }
+ 
+    .timeline-content .company {
+      font-size: 0.875rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+ 
+    .timeline-content p { font-size: 0.875rem; color: var(--text-muted); }
+ 
+    /* ===================== KONTAK ===================== */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      text-align: center;
+    }
+ 
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0.75rem auto 2rem;
+    }
+ 
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+ 
+    .social-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+ 
+    .social-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+ 
+    /* ===================== FOOTER ===================== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+ 
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 640px) {
+      #hero { grid-template-columns: 1fr; text-align: center; padding-top: 4rem; }
+      #hero .hero-photo-placeholder, #hero .hero-photo { margin: 0 auto; }
+      .hero-buttons { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- ===================== NAVBAR ===================== -->
+  <nav>
+    <span class="nav-logo">Destia Rahma</span>
+    <ul class="nav-links">
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#projects">Proyek</a></li>
+      <li><a href="#experience">Pengalaman</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+  </nav>
+ 
+  <!-- ===================== HERO ===================== -->
+  <div id="hero">
+    <div>
+      <!-- Ganti teks di dalam tag di bawah sesuai profil kamu -->
+      <span class="hero-tag">Front-End Developer · UI/UX Designer</span>
+      <h1 class="hero-name">Hai, aku<br/>Destia Rahma </h1>
+      <p class="hero-tagline">
+        <!-- Tulis 1–2 kalimat singkat tentang dirimu dan apa yang kamu kerjakan -->
+        Siswa RPL yang berfokus pada pengembangan web dan desain antarmuka. 
+        Saya suka membangun sistem yang tidak hanya berfungsi dengan baik, tapi juga indah ketika dilihat dan mudah digunakan.
+      </p>
+      <div class="hero-buttons">
+        <!-- Ganti href "#contact" jika kamu punya link lain, misal link CV -->
+        <a href="#contact" class="btn btn-primary">Hubungi Aku</a>
+        <a href="#projects" class="btn btn-outline">Lihat Proyek</a>
+      </div>
+    </div>
+ 
+    <img src="Foto_Profil.png" alt="Foto profil" class="hero-photo" />
+
+  </div>
+ 
+  <!-- ===================== TENTANG ===================== -->
+  <section id="about">
+    <p class="section-label">Tentang Aku</p>
+    <h2 class="section-title">Sedikit tentang<br/>diri saya</h2>
+ 
+    <div class="about-grid">
+      <div class="about-text">
+        <!-- Tulis 2–3 paragraf tentang dirimu -->
+        <p>
+          Saya adalah siswa SMKN 4 Bandung jurusan Rekayasa Perangkat Lunak yang berfokus pada Front-End Development dengan pemahaman UI/UX, database, dan logika sistem backend.
+          Saya terbiasa bekerja dari tahap desain di Figma hingga implementasi menggunakan Laravel dan MySQL.
+        </p>
+        <p>
+          Saya adalah tipe yang bekerja secara terstruktur dan detail. Selalu memikirkan langkah-langkah secara mendalam sebelum mengeksekusi.
+          Bagi saya, hasil yang baik bukan sekadar selesai, tapi benar-benar tepat dan berkualitas. 
+          Saya juga terbiasa bekerja dalam tim maupun mandiri, dan nyaman mengambil peran sebagai pengarah maupun eksekutor.
+        </p>
+        <p>
+          Di luar coding dan desain, saya aktif menulis — bahkan pernah meraih juara di lomba menulis dan mendapat pengakuan sebagai penulis terpilih dari beberapa komunitas.
+          Saya juga sedang mengembangkan game bersama tim menggunakan Unity, sesuatu yang menggabungkan kreativitas dan logika teknis sekaligus.
+        </p>
+      </div>
+ 
+      <div class="about-skills">
+        <h4>Keahlian</h4>
+        <div class="skills-list">
+          <!-- Tambah atau hapus skill-tag sesuai keahlianmu -->
+    
+          <span class="skill-tag">HTML & CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Laravel</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">UI/UX</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Kotlin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== PROYEK ===================== -->
+  <section id="projects">
+    <p class="section-label">Portofolio</p>
+    <h2 class="section-title">Proyek pilihan</h2>
+ 
+    <div class="projects-grid">
+ 
+      <!-- KARTU PROYEK 1 — duplikat blok ini untuk tambah proyek -->
+      <div class="project-card">
+        <img src="FOROP4T_1.png   " alt="Screenshot FOROP4T" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>FOROP4T</h3>
+        <p>Sistem informasi sekolah yang dirancang untuk mempermudah siswa dan guru 
+          dalam mengakses informasi terkait kegiatan belajar mengajar. Mulai dari absensi 
+          hingga jadwal pelajaran yang dibangun dengan fitur CRUD.</p>
+        <div class="project-tags">
+          <span class="project-tag">Laravel</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">HTML/CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+        <!-- Ganti href dengan link proyek atau github kamu -->
+    
+      </div>
+ 
+      <!-- KARTU PROYEK 2 -->
+      <div class="project-card">
+        <img src="Echoes of Melody Games.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Echoes of Melody</h3>
+        <p>Game bergenre psychological thriller berbasis Unity berlatar sekolah SMKN 4 Bandung dengan mekanisme puzzle interaktif seperti kode,
+             sambungan kabel, dan interaksi objek. Saya berperan dalam penulisan alur cerita branching, 
+             pembuatan asset 2D pixel art, hingga implementasi mekanisme gameplay bersama tim 10 orang</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+        <h5> Coming Soon </h5>
+      </div>
+ 
+      <!-- KARTU PROYEK 3 -->
+      <div class="project-card">
+        <img src="UI_Design.png" alt="Screenshot UI/UX" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Re5et Academy</h3>
+        <p>Desain dashboard web untuk kebutuhan project film dengan dua style yang berhasil meraih penghargaan terbaik dalam eventnya. 
+            Saya menangani seluruh proses desain dari wireframe hingga prototype di Figma, termasuk pengelolaan revisi dari 
+            client secara terstruktur</p>
+        <div class="project-tags">
+          <span class="project-tag">Figma</span>
+          <span class="project-tag">UI/UX</span>
+          <span class="project-tag">Wireframe</span>
+          <span class="project-tag">Prototype</span>
+        </div>
+    
+        
+        <a href="https://www.figma.com/proto/vblQv74PKq5BpFt21bbnUS/Untitled?node-id=0-1&t=IwnQsgnQDymS89bv-1" class="project-link">Lihat Project - 1</a>
+        <br>
+        <a href="https://www.figma.com/proto/yDlmpZuufzTyZHp6g6OFd3/Untitled?node-id=0-1&t=GoFnsvpbpdyqOA4W-1" class="project-link">Lihat Project - 2</a>
+
+      </div>
+
+      <div class="project-card">
+        <img src="Sistem Data Siswa.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Sistem Data Siswa</h3>
+        <p>Aplikasi berbasis Android dengan supabase yang mengelola data siswa secara efisien</p>
+        <div class="project-tags">
+          <span class="project-tag">Mobile</span>
+          <span class="project-tag">Android Studio</span>
+          <span class="project-tag">Kotlin</span>
+          <span class="project-tag">Supabase</span>
+        </div>
+      </div>
+ 
+      <div class="project-card">
+        <img src="CostPoint.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>CostPoint</h3>
+        <p>Aplikasi mengotomatisasi alur akuntansi dasar penjualan, dimulai dari manajemen identitas produk hingga analisis data keuangan mendalam </p>
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">Netbeans</span>
+          <span class="project-tag">Figma</span>
+        </div>
+        <h5> Coming Soon </h5>
+      </div>
+
+      <div class="project-card">
+        <img src="Starbucks Web.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Redesign Starbucks Website</h3>
+        <p>Redesign antarmuka website Starbucks menggunakan Figma untuk meningkatkan pengalaman pengguuna</p>
+        <div class="project-tags">
+          <span class="project-tag">Figma</span>
+          <span class="project-tag">UI/UX</span>
+          <span class="project-tag">Wireframe</span>
+          <span class="project-tag">Prototype</span>
+        </div>
+       <a href="https://www.figma.com/proto/hMFaA1f5bMbSe3U6nvFqlE/Starbucks-Web?node-id=4-4&starting-point-node-id=4%3A4&scaling=scale-down-width&content-scaling=fixed&t=lhLf79o2EUo37UK7-1" class="project-link">Lihat Project</a>
+      </div>
+ 
+    </div>
+  </section>
+
+  <!-- ===================== Experience ===================== -->
+  <section id="experience">
+    <p class="section-label">SERTIFICATE</p>
+    <h2 class="section-title">Pengalaman</h2>
+ 
+    <div class="projects-grid">
+ 
+      <div class="project-card">
+        <img src="Sertifikat_Lomba Web Design IITC.png" alt="Screenshot FOROP4T" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Web Design</h3>
+        <p>Lomba Web Design Information Technology Competition X Rumah Web  </p>
+        <div class="project-tags">
+          <span class="project-tag">HTML/CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="Sertifikat_Peserta Lomba Itech Competition.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Itech Competition</h3>
+        <p>Lomba itech Competition Season 8 STMIK LIKMI</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+      </div>
+ 
+      <div class="project-card">
+        <img src="Sertifikat_Peserta Training Session ITech Competition.png" alt="Screenshot UI/UX" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Training Session</h3>
+        <p>Peserta Training Session itech Competition Season 8 STMIK LIKMI</p>
+        <div class="project-tags">
+          <span class="project-tag">Figma</span>
+          <span class="project-tag">UI/UX</span>
+          <span class="project-tag">Wireframe</span>
+          <span class="project-tag">Prototype</span>
+        </div>
+      </div>
+ 
+      <div class="project-card">
+        <img src="Sertifikat_Oracle Academy Database Foundation.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Oracle Academy</h3>
+        <p>Oracle Academy Database Foundation</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="Sertifikat_Peserta Webinar Figma.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Webinar Figma</h3>
+        <p>Webinar Figma IdSpora X PT Padepokan Tujuh Sembilan</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+
+  <!-- ===================== Interest ===================== -->
+  <section id="projects">
+    <p class="section-label">SERTIFICATE</p>
+    <h2 class="section-title">Interest</h2>
+ 
+    <div class="projects-grid">
+ 
+      <div class="project-card">
+        <img src="Sertifikat_Lomba Paskibra LKBB Reinkarnasi Angkasa.png   " alt="Screenshot FOROP4T" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Paskibra</h3>
+        <p>Juara Harapan Madya 3 - LKBB Reinkarnasi Angkasa Tingkat Kota Bandung</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML/CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+      </div>
+ 
+      <div class="project-card">
+        <img src="Sertifikat_Lomba Paskibra SMK Kencana.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Paskibra</h3>
+        <p>Juara Perintis 1 - Lomba Paskibra SMK Kencana Tingkat Jawa Barat</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="Sertifikat_Lomba Cerpen SMKN 4 BDG.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Menulis</h3>
+        <p>Juara 1 - Lomba Menulis Cerpen SMKN 4 Bandung</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+      </div>
+ 
+      <!-- KARTU PROYEK 3 -->
+      <div class="project-card">
+        <img src="Sertifikat_Penulis Terbaik Bebasnulis.png" alt="Screenshot UI/UX" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Menulis</h3>
+        <p>Penulis Terbaik - Lomba Menulis Cerpen Gema Sastra Bebasnulis</p>
+        <div class="project-tags">
+          <span class="project-tag">Figma</span>
+          <span class="project-tag">UI/UX</span>
+          <span class="project-tag">Wireframe</span>
+          <span class="project-tag">Prototype</span>
+        </div>
+      </div>
+ 
+      <div class="project-card">
+        <img src="Sertifikat_Penulis Terpilih PuspamalaPustaka.png" alt="Screenshot Echoes of Melody Games" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Menulis</h3>
+        <p>Penulis Terpilih - Lomba Menulis Cerpen PuspamalaPustaka X Ellunar</p>
+        <div class="project-tags">
+          <span class="project-tag">Pixel Art</span>
+          <span class="project-tag">Storytelling</span>
+          <span class="project-tag">Game Design</span>
+          <span class="project-tag">Unity</span>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <!-- ===================== KONTAK ===================== -->
+  <section id="contact">
+    <div class="contact-box">
+      <p class="section-label">Kontak</p>
+      <h2 class="section-title" style="margin-bottom: 0;">Mari berkolaborasi</h2>
+      <p>Punya proyek, pertanyaan, atau sekadar ingin menyapa? 
+         Kontak aku yaa, aku terbuka untuk diskusi!</p>
+        
+        <a href="mailto:rahmadestia631@gmail.com" class="social-link" target="_blank">Email</a>
+        <a href="https://github.com/Ds361" class="social-link" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/rhhdes/" class="social-link" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/destia-rahma" class="social-link" target="_blank">Linkedin</a>
+        <!-- Tambah platform lain jika perlu, misal: Behance, Dribbble, Twitter/X -->
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+     © 2026
+  </footer>
+ 
+</body>
+</html>
